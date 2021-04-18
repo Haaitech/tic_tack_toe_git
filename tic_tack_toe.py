@@ -9,8 +9,8 @@ FPS = 60
 
 WHITE = 255, 255, 255
 
-WIN_LIST = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7],
-            [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
+# WIN_LIST = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7],
+#             [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
 pygame.display.set_caption("Space Tac Toe")
 
@@ -50,6 +50,18 @@ def create_button(board_buttons):
             num += 1
             button = Button(240, 240, x, y, num)
             board_buttons.append(button)
+
+
+def win_check(player):
+
+    return (((1) and (2)) or
+        (4 and 5 and 6) or
+        (7 and 8 and 9) or
+        (1 and 4 and 7) or
+        (2 and 5 and 8) or
+        (3 and 6 and 9) or
+        (1 and 5 and 9) or
+        (3 and 5 and 7)) in player
 
 
 def end_game(text):
@@ -116,17 +128,15 @@ def main():
         for button in player_x_button:
             WIN.blit(PLAYER_X, button.rect)
 
-        player_x_buttonid.sort()
-        player_o_buttonid.sort()
-
-       # print(player_x_buttonid)
-
         pygame.display.update()
 
-        for i in WIN_LIST:
-            if player_x_buttonid == i or player_o_buttonid == i:
-                pygame.time.delay(200)
-                end_game(winner_text)
+        print(player_x_buttonid)
+
+        if win_check(player_x_buttonid):
+            end_game(winner_text)
+
+        if win_check(player_o_buttonid):
+            end_game(winner_text)
 
         if board_buttons == []:
             pygame.time.delay(200)
