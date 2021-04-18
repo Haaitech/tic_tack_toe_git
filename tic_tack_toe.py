@@ -55,13 +55,13 @@ def create_button(board_buttons):
 def win_check(player):
 
     return (((1) and (2)) or
-        (4 and 5 and 6) or
-        (7 and 8 and 9) or
-        (1 and 4 and 7) or
-        (2 and 5 and 8) or
-        (3 and 6 and 9) or
-        (1 and 5 and 9) or
-        (3 and 5 and 7)) in player
+            (4 and 5 and 6) or
+            (7 and 8 and 9) or
+            (1 and 4 and 7) or        # This function does not work!
+            (2 and 5 and 8) or
+            (3 and 6 and 9) or
+            (1 and 5 and 9) or
+            (3 and 5 and 7)) in player
 
 
 def end_game(text):
