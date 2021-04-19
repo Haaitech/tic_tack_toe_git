@@ -1,5 +1,4 @@
 import pygame
-import os
 pygame.font.init()
 
 # Game setup
@@ -8,9 +7,6 @@ WIN = pygame.display.set_mode((WIDTH, HEIGHT))
 FPS = 60
 
 WHITE = 255, 255, 255
-
-# WIN_LIST = [[1, 2, 3], [4, 5, 6], [7, 8, 9], [1, 4, 7],
-#             [2, 5, 8], [3, 6, 9], [1, 5, 9], [3, 5, 7]]
 
 pygame.display.set_caption("Space Tac Toe")
 
@@ -53,15 +49,15 @@ def create_button(board_buttons):
 
 
 def win_check(player):
-
-    return (((1) and (2)) or
-            (4 and 5 and 6) or
-            (7 and 8 and 9) or
-            (1 and 4 and 7) or        # This function does not work!
-            (2 and 5 and 8) or
-            (3 and 6 and 9) or
-            (1 and 5 and 9) or
-            (3 and 5 and 7)) in player
+    if (1 in player and 2 in player and 3 in player or
+        4 in player and 5 in player and 6 in player or
+        7 in player and 8 in player and 9 in player or 
+        1 in player and 4 in player and 7 in player or 
+        2 in player and 5 in player and 8 in player or 
+        3 in player and 6 in player and 9 in player or 
+        1 in player and 5 in player and 9 in player or 
+        3 in player and 5 in player and 7 in player):
+        return True
 
 
 def end_game(text):
@@ -83,10 +79,7 @@ def main():
     player_x_buttonid = []
     player_o_button = []
     player_o_buttonid = []
-    winner = ""
     clicks = 1
-
-    draw_text = "IT'S A DRAW"
 
     create_button(board_buttons)
 
@@ -99,7 +92,6 @@ def main():
         WIN.blit(BG, (0, 0))
         WIN.blit(LINES, (0, 0))
         pos = pygame.mouse.get_pos()
-        winner_text = f"Player {winner} WON"
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
@@ -112,11 +104,9 @@ def main():
                 if clicks % 2 == 0:
                     player_o_button.append(button)
                     player_o_buttonid.append(button.id)
-                    winner = "X"
                 else:
                     player_x_button.append(button)
                     player_x_buttonid.append(button.id)
-                    winner = "O"
 
                 board_buttons.remove(button)
                 clicks += 1
@@ -130,16 +120,18 @@ def main():
 
         pygame.display.update()
 
-        print(player_x_buttonid)
 
         if win_check(player_x_buttonid):
+            winner_text = "Player X WON!"
             end_game(winner_text)
 
         if win_check(player_o_buttonid):
+            winner_text = "Player O WON!"
             end_game(winner_text)
 
         if board_buttons == []:
             pygame.time.delay(200)
+            draw_text = "IT'S A DRAW"
             end_game(draw_text)
 
 
