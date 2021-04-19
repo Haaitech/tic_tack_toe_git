@@ -98,18 +98,18 @@ def main():
                 pygame.quit()
                 exit()
 
-        for button in board_buttons:
-            button.hoverd = button.rect.collidepoint(pos)
-            if button.rect.collidepoint(pos) and event.type == pygame.MOUSEBUTTONUP:
-                if clicks % 2 == 0:
-                    player_o_button.append(button)
-                    player_o_buttonid.append(button.id)
-                else:
-                    player_x_button.append(button)
-                    player_x_buttonid.append(button.id)
+            for button in board_buttons:
+                button.hoverd = button.rect.collidepoint(pos)
+                if button.rect.collidepoint(pos) and event.type == pygame.MOUSEBUTTONUP:
+                    if clicks % 2 == 0:
+                        player_o_button.append(button)
+                        player_o_buttonid.append(button.id)
+                    else:
+                        player_x_button.append(button)
+                        player_x_buttonid.append(button.id)
 
-                board_buttons.remove(button)
-                clicks += 1
+                    board_buttons.remove(button)
+                    clicks += 1
 
         for button in board_buttons:
             button.draw(WIN)
