@@ -51,12 +51,12 @@ def create_button(board_buttons):
 def win_check(player):
     if (1 in player and 2 in player and 3 in player or
         4 in player and 5 in player and 6 in player or
-        7 in player and 8 in player and 9 in player or 
-        1 in player and 4 in player and 7 in player or 
-        2 in player and 5 in player and 8 in player or 
-        3 in player and 6 in player and 9 in player or 
-        1 in player and 5 in player and 9 in player or 
-        3 in player and 5 in player and 7 in player):
+        7 in player and 8 in player and 9 in player or
+        1 in player and 4 in player and 7 in player or
+        2 in player and 5 in player and 8 in player or
+        3 in player and 6 in player and 9 in player or
+        1 in player and 5 in player and 9 in player or
+            3 in player and 5 in player and 7 in player):
         return True
 
 
@@ -119,7 +119,6 @@ def main():
             WIN.blit(PLAYER_X, button.rect)
 
         pygame.display.update()
-
 
         if win_check(player_x_buttonid):
             winner_text = "Player X WON!"
