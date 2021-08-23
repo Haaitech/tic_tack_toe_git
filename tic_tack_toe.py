@@ -1,4 +1,5 @@
 import pygame
+import random
 pygame.font.init()
 
 # Game setup
@@ -61,6 +62,7 @@ def win_check(player):
 
 
 def end_game(text):
+    pygame.time.delay(500)
     WIN.blit(BG, (0, 0))
     draw_text = WINNER_FONT.render(text, 1, WHITE)
     WIN.blit(draw_text, (WIDTH/2 - draw_text.get_width() /
@@ -79,7 +81,7 @@ def main():
     player_x_buttonid = []
     player_o_button = []
     player_o_buttonid = []
-    clicks = 1
+    clicks = random.randint(1, 2)
 
     create_button(board_buttons)
 
